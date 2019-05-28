@@ -11,6 +11,7 @@
     "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
+    "publish": "gulp && gulp publish",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
