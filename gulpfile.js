@@ -3,11 +3,11 @@ const exec = require("child_process").exec;
 const rename = require("gulp-rename");
 
 function config() {
-  return src("./package.json").pipe(dest("build"));
+  return src("./package.json").pipe(dest("build-npm"));
 }
 
 function babel(cb) {
-  exec("npx babel src --out-dir build", { cwd: "." }, function(
+  exec("npx babel src --out-dir build-npm", { cwd: "." }, function(
     err,
     stdout,
     stderr
@@ -17,13 +17,13 @@ function babel(cb) {
 }
 
 function main() {
-  return src("./build/main.js")
+  return src("./build-npm/main.js")
     .pipe(rename("index.js"))
-    .pipe(dest("build"));
+    .pipe(dest("build-npm"));
 }
 
 function publish(cb) {
-  exec("npm publish", { cwd: "./build" }, function(err, stdout, stderr) {
+  exec("npm publish", { cwd: "./build-npm" }, function(err, stdout, stderr) {
     cb(err);
   });
 }

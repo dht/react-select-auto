@@ -9,6 +9,7 @@
 /coverage
 
 /build
+/build-npm
 
 # misc
 .DS_Store
