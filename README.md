@@ -10,6 +10,10 @@ A simple select for react with i18n support and autocomplete.
 />
 ```
 
+## Demo
+
+https://dht.github.io/react-select-auto/
+
 ## Install
 
 ### npm
