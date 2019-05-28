@@ -1,4 +1,4 @@
-A simple select for react with i18n support, autocomplete and WAI-ARIA compliancy.
+A simple select for ReactJS with I18n support, autocomplete and WAI-ARIA compliancy.
 
 ## Demo
 
