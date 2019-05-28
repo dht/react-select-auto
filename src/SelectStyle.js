@@ -18,6 +18,9 @@ let styles = {
     flexDirection: "row",
     alignItems: "center"
   },
+  "placeholder>span.disabled": {
+    color: "gray"
+  },
   "placeholder>span": {
     flex: 1,
     wordWrap: "none",

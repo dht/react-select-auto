@@ -227,18 +227,19 @@ export class Select extends Component {
   }
 
   renderPlaceholder() {
-    const { placeholder } = this.props;
+    const { placeholder, disabled } = this.props;
     const { hover } = this.state;
 
     const title = this.title;
 
     const className = classnames("placeholder", {
       title,
-      hover
+      hover: hover && !disabled
     });
 
     const classNameSpan = classnames("placeholder>span", {
-      empty: !title
+      empty: !title,
+      disabled
     });
 
     const text = title || placeholder;
@@ -338,7 +339,13 @@ export class Select extends Component {
 
     return (
       <div style={getStyle("options", this.style)} ref={this.overlay}>
-        <div style={getStyle("list", this.styleList)} ref={this.list}>
+        <div
+          style={getStyle("list", this.styleList)}
+          ref={this.list}
+          ariaAutocomplete="list"
+          ariaExpanded={open}
+          autoComplete="off"
+        >
           {this.renderOptions()}
         </div>
         {this.renderSearch()}
@@ -377,7 +384,10 @@ export class Select extends Component {
   };
 
   toggleOpen = () => {
+    const { disabled } = this.props;
     let { open, query } = this.state;
+
+    if (disabled) return;
 
     open = !open;
 

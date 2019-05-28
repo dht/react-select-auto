@@ -69,6 +69,16 @@ class Examples extends React.Component {
           name="country"
           onChange={this.onChange}
         />
+        <br />
+        <h2>Disabled</h2>
+        <Select
+          placeholder="Choose a country"
+          disabled={true}
+          options={dataEn}
+          value={"US"}
+          name="country"
+          onChange={this.onChange}
+        />
       </div>
     );
   }
