@@ -1,10 +1,10 @@
 // @flow
 import React, { Component } from "react";
-import "./Select.scss";
 import classnames from "classnames";
 import AutosuggestHighlightMatch from "autosuggest-highlight/match";
 import AutosuggestHighlightParse from "autosuggest-highlight/parse";
 import all from "./i18n";
+import { getStyle } from "./SelectStyle";
 
 export class Select extends Component {
   static defaultProps = {
@@ -110,7 +110,7 @@ export class Select extends Component {
   };
 
   keydown = ev => {
-    let { open, query = "", index = -1 } = this.state;
+    let { open, query = "" } = this.state;
 
     if (!open) return;
 
@@ -228,17 +228,29 @@ export class Select extends Component {
 
   renderPlaceholder() {
     const { placeholder } = this.props;
+    const { hover } = this.state;
+
     const title = this.title;
 
     const className = classnames("placeholder", {
-      title
+      title,
+      hover
+    });
+
+    const classNameSpan = classnames("placeholder>span", {
+      empty: !title
     });
 
     const text = title || placeholder;
 
     return (
-      <div className={className} onClick={this.toggleOpen}>
-        <span>{text}</span>
+      <div
+        style={getStyle(className)}
+        onClick={this.toggleOpen}
+        onMouseOver={() => this.setState({ hover: true })}
+        onMouseOut={() => this.setState({ hover: false })}
+      >
+        <span style={getStyle(classNameSpan)}>{text}</span>
         {this.renderArrow()}
       </div>
     );
@@ -246,21 +258,25 @@ export class Select extends Component {
 
   selectOption = option => {
     const { name } = this.props;
+    const value = option.id;
 
     let ev = {
       target: {
-        value: option.id,
+        value,
         name
       }
     };
 
     this.toggleOpen();
-    this.props.onChange(ev);
+
+    if (this.props.onChange) {
+      this.props.onChange(ev, value);
+    }
   };
 
   renderOption = (option, i) => {
     const { value } = this.props;
-    const { query, index } = this.state;
+    const { query, index, hoverOptionId } = this.state;
 
     const suggestionText = `${option.title}`;
     const matches = AutosuggestHighlightMatch(suggestionText, query);
@@ -268,21 +284,25 @@ export class Select extends Component {
 
     const className = classnames("option", {
       selected: option.id === value,
-      highlighted: index === i
+      highlighted: index === i,
+      hover: option.id === hoverOptionId
     });
 
     return (
       <div
-        className={className}
+        className="option"
+        style={getStyle(className)}
         key={option.id}
         value={option.id}
+        onMouseOver={() => this.setState({ hoverOptionId: option.id })}
+        onMouseOut={() => this.setState({ hoverOptionId: null })}
         onClick={() => this.selectOption(option)}
       >
         {parts.map((part, index) => {
           const className = part.highlight ? "highlight" : null;
 
           return (
-            <span className={className} key={index}>
+            <span style={getStyle(className)} key={index}>
               {part.text}
             </span>
           );
@@ -303,7 +323,7 @@ export class Select extends Component {
     const { empty } = this.i18n;
 
     if (this.options.length === 0) {
-      return <div className="empty">{empty}</div>;
+      return <div style={getStyle("empty")}>{empty}</div>;
     }
 
     return this.options.map((option, i) => this.renderOption(option, i));
@@ -315,8 +335,8 @@ export class Select extends Component {
     if (!open) return null;
 
     return (
-      <div className="options" ref={this.overlay} style={this.style}>
-        <div className="list" ref={this.list} style={this.styleList}>
+      <div style={getStyle("options", this.style)} ref={this.overlay}>
+        <div style={getStyle("list", this.styleList)} ref={this.list}>
           {this.renderOptions()}
         </div>
         {this.renderSearch()}
@@ -331,7 +351,7 @@ export class Select extends Component {
     if (!query) return null;
 
     return (
-      <div className="search">
+      <div style={getStyle("search")}>
         {search} {query}
       </div>
     );
@@ -372,7 +392,7 @@ export class Select extends Component {
     const className = classnames("Select-container", { rtl: isRTL });
 
     return (
-      <div className={className} ref={this.container}>
+      <div style={getStyle(className)} ref={this.container}>
         {this.renderPlaceholder()}
         {this.renderList()}
       </div>
