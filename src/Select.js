@@ -187,8 +187,6 @@ export class Select extends Component {
 
     const relativePosition = this.highlightedRelativePosition(index);
 
-    console.log("relativePosition -> ", relativePosition);
-
     if (relativePosition[0] < 0) {
       this.scroll(relativePosition[0]);
     }
