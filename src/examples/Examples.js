@@ -1,8 +1,10 @@
 import React from "react";
 import "./Examples.scss";
 import Select from "../Select";
-import data from "./data/lofs";
-import dataRtl from "./data/lofs.rtl";
+import dataEn from "./data/countries.en";
+import dataCh from "./data/countries.ch";
+import dataHe from "./data/countries.he";
+import dataAr from "./data/countries.ar";
 
 class Examples extends React.Component {
   state = {
@@ -25,26 +27,46 @@ class Examples extends React.Component {
 
   render() {
     const { item } = this.state,
-      { lofId, lofRtlId } = item;
+      { country } = item;
 
     return (
       <div className="Examples-container">
-        <h2>LTR</h2>
+        <h2>English (ltr)</h2>
         <Select
-          placeholder="lofs"
-          options={Object.values(data)}
-          value={lofId}
-          name="lofId"
+          placeholder="Choose a country"
+          options={dataEn}
+          value={country}
+          name="country"
           onChange={this.onChange}
         />
         <br />
-        <h2>RTL</h2>
+        <h2>Chinese (ltr)</h2>
         <Select
-          placeholder="כשללים"
+          placeholder="选择国家"
+          locale="ch"
+          options={dataCh}
+          value={country}
+          name="country"
+          onChange={this.onChange}
+        />
+        <br />
+        <h2>Hebrew (rtl)</h2>
+        <Select
+          placeholder="בחר מדינה"
           locale="he"
-          options={Object.values(dataRtl)}
-          value={lofRtlId}
-          name="lofRtlId"
+          options={dataHe}
+          value={country}
+          name="country"
+          onChange={this.onChange}
+        />
+        <br />
+        <h2>Arabic (rtl)</h2>
+        <Select
+          placeholder="اختر الدولة"
+          locale="ar"
+          options={dataAr}
+          value={country}
+          name="country"
           onChange={this.onChange}
         />
       </div>
