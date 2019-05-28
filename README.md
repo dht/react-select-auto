@@ -1,5 +1,11 @@
 A simple select for react with i18n support and autocomplete.
 
+## Demo
+
+https://dht.github.io/react-select-auto/
+
+## Usage
+
 ```jsx
 <Select
   placeholder="lofs"
@@ -9,10 +15,6 @@ A simple select for react with i18n support and autocomplete.
   onChange={this.onChange}
 />
 ```
-
-## Demo
-
-https://dht.github.io/react-select-auto/
 
 ## Install
 
@@ -76,4 +78,10 @@ gulp publish
 
 ```bash
 gulp
+```
+
+### publish docs (examples)
+
+```bash
+npm run deploy
 ```
