@@ -29,6 +29,7 @@ class Examples extends React.Component {
 
     return (
       <div className="Examples-container">
+        <h2>LTR</h2>
         <Select
           placeholder="lofs"
           options={Object.values(data)}
@@ -37,6 +38,7 @@ class Examples extends React.Component {
           onChange={this.onChange}
         />
         <br />
+        <h2>RTL</h2>
         <Select
           placeholder="כשללים"
           locale="he"
