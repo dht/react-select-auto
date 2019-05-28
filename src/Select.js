@@ -277,6 +277,7 @@ export class Select extends Component {
   renderOption = (option, i) => {
     const { value } = this.props;
     const { query, index, hoverOptionId } = this.state;
+    const { isRTL } = this.i18n;
 
     const suggestionText = `${option.title}`;
     const matches = AutosuggestHighlightMatch(suggestionText, query);
@@ -285,7 +286,8 @@ export class Select extends Component {
     const className = classnames("option", {
       selected: option.id === value,
       highlighted: index === i,
-      hover: option.id === hoverOptionId
+      hover: option.id === hoverOptionId,
+      rtl: isRTL
     });
 
     return (

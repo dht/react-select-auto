@@ -62,11 +62,12 @@ let styles = {
   highlight: {
     color: "brown"
   },
-
   "option.selected": {
     fontWeight: "bold"
   },
-
+  "option.rtl": {
+    direction: "rtl"
+  },
   "option.highlighted": {
     backgroundColor: "dodgerblue",
     color: "white"
