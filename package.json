@@ -1,6 +1,6 @@
 {
   "name": "react-select-auto",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "homepage": "https://dht.github.io/react-select-auto",
   "dependencies": {
     "autosuggest-highlight": "^3.1.1",
