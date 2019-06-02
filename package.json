@@ -1,6 +1,6 @@
 {
   "name": "react-select-auto",
-  "version": "0.1.6",
+  "version": "0.1.8",
   "homepage": "https://dht.github.io/react-select-auto",
   "dependencies": {
     "autosuggest-highlight": "^3.1.1",
@@ -11,7 +11,7 @@
     "build": "react-scripts build",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "publish": "gulp && gulp publish",
+    "publish": "gulp",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

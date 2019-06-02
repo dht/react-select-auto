@@ -287,7 +287,7 @@ export class Select extends Component {
     const className = classnames("option", {
       selected: option.id === value,
       highlighted: index === i,
-      hover: option.id === hoverOptionId,
+      hover: option.id === hoverOptionId && index !== i,
       rtl: isRTL
     });
 
@@ -342,8 +342,8 @@ export class Select extends Component {
         <div
           style={getStyle("list", this.styleList)}
           ref={this.list}
-          ariaAutocomplete="list"
-          ariaExpanded={open}
+          aria-autocomplete="list"
+          aria-expanded={open}
           autoComplete="off"
         >
           {this.renderOptions()}

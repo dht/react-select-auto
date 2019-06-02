@@ -31,9 +31,6 @@ let styles = {
   "placeholder>span.empty": {
     color: "gray"
   },
-  "placeholder.hover": {
-    backgroundColor: "#f8f8f8"
-  },
   options: {
     position: "absolute",
     top: "41px",
